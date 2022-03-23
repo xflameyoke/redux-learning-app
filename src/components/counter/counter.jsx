@@ -7,12 +7,24 @@ const Counter = () => {
   const counter = useSelector(state => state.counter);
 
   const incrementHandler = () => {
-    dispatch({ type: 'increment'})
+    dispatch({ type: 'increment' })
   };
 
   const decrementHandler = () => {
-    dispatch({ type: 'decrement'})
+    dispatch({ type: 'decrement' })
   };
+
+  const multiplyHandler = () => {
+    dispatch({ type: 'multiply' })
+  };
+
+  const divideHandler = () => {
+    dispatch({ type: 'divide' })
+  };
+
+  const clearHandler = () => {
+    dispatch({ type: 'clear' })
+  }
 
   return (
     <CounterStyled>
@@ -21,6 +33,9 @@ const Counter = () => {
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={decrementHandler}>Decrement</button>
+        <button onClick={multiplyHandler}>Multiply</button>
+        <button onClick={divideHandler}>Divide</button>
+        <button onClick={clearHandler}>Clear</button>
       </div>
     </CounterStyled>
   );

@@ -13,6 +13,24 @@ const counterReducer = (state = { counter: 0 }, action) => {
         }
     }
 
+    if (action.type === 'multiply') {
+        return {
+            counter: state.counter * 2,
+        }
+    }
+
+    if (action.type === 'divide') {
+        return {
+            counter: state.counter / 2,
+        }
+    }
+
+    if (action.type === 'clear') {
+        return {
+            counter: state.counter - state.counter,
+        }
+    }
+
     return state;
 }
 
