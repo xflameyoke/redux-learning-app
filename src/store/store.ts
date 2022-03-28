@@ -1,6 +1,6 @@
-import { createStore } from 'redux';
+import { createStore } from 'redux'
 
-const counterReducer = (state = { counter: 0 }, action) => {
+const counterReducer = (state = { counter: 0 }, action: { type: string }) => {
     if (action.type === 'increment') {
         return {
             counter: state.counter + 1,
@@ -31,10 +31,12 @@ const counterReducer = (state = { counter: 0 }, action) => {
         }
     }
 
-    return state;
+    return state
 }
 
-const store = createStore(counterReducer);
+const store = createStore(counterReducer)
 
-export default store;
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
 
+export default store
