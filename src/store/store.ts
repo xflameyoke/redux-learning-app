@@ -1,64 +1,41 @@
-import { createStore } from 'redux'
+import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit'
 
-const counterReducer = (
-    state = { counter: 0, showCounter: true },
-    action: { type: string; value: number }
-) => {
-    if (action.type === 'increment') {
-        return {
-            counter: state.counter + 1,
-            showCounter: state.showCounter,
-        }
-    }
+const initialState = { counter: 0, showCounter: true }
 
-    if (action.type === 'decrement') {
-        return {
-            counter: state.counter - 1,
-            showCounter: state.showCounter,
-        }
-    }
+const counterSlice = createSlice({
+    name: 'counter',
+    initialState,
+    reducers: {
+        increment(state: { counter: number }) {
+            state.counter++
+        },
+        decrement(state: { counter: number }) {
+            state.counter--
+        },
+        multiply(state: { counter: number }) {
+            state.counter * 2
+        },
+        divide(state: { counter: number }) {
+            state.counter / 2
+        },
+        clear(state: { counter: number }) {
+            state.counter - state.counter
+        },
+        increase(state: { counter: number }, action: PayloadAction<number>) {
+            state.counter + action.payload
+        },
+        toggle(state: { showCounter: boolean }) {
+            state.showCounter = !state.showCounter
+        },
+    },
+})
 
-    if (action.type === 'multiply') {
-        return {
-            counter: state.counter * 2,
-            showCounter: state.showCounter,
-        }
-    }
-
-    if (action.type === 'divide') {
-        return {
-            counter: state.counter / 2,
-            showCounter: state.showCounter,
-        }
-    }
-
-    if (action.type === 'clear') {
-        return {
-            counter: state.counter - state.counter,
-            showCounter: state.showCounter,
-        }
-    }
-
-    if (action.type === 'increase') {
-        return {
-            counter: state.counter + action.value,
-            showCounter: state.showCounter,
-        }
-    }
-
-    if (action.type === 'toggle') {
-        return {
-            showCounter: !state.showCounter,
-            counter: state.counter,
-        }
-    }
-
-    return state
-}
-
-const store = createStore(counterReducer)
+const store = configureStore({
+    reducer: counterSlice.reducer,
+})
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
+export const counterActions = counterSlice.actions
 
 export default store

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { CounterStyled, ValueStyled } from './counter.styled'
+import { counterActions } from '../../store/store'
 
 interface RootState {
     showCounter: boolean
@@ -16,31 +17,31 @@ const Counter = () => {
     const show = useSelector(showChange)
 
     const incrementHandler = () => {
-        dispatch({ type: 'increment' })
+        dispatch(counterActions.increment())
     }
 
     const decrementHandler = () => {
-        dispatch({ type: 'decrement' })
+        dispatch(counterActions.decrement())
     }
 
     const multiplyHandler = () => {
-        dispatch({ type: 'multiply' })
+        dispatch(counterActions.multiply())
     }
 
     const divideHandler = () => {
-        dispatch({ type: 'divide' })
+        dispatch(counterActions.divide())
     }
 
     const clearHandler = () => {
-        dispatch({ type: 'clear' })
+        dispatch(counterActions.clear())
     }
 
     const increaseHandler = () => {
-        dispatch({ type: 'increase', value: 5 })
+        dispatch(counterActions.increase(5))
     }
 
     const toggleHandler = () => {
-        dispatch({ type: 'toggle' })
+        dispatch(counterActions.toggle())
     }
 
     return (
