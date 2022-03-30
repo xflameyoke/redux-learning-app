@@ -13,16 +13,16 @@ const counterSlice = createSlice({
             state.counter--
         },
         multiply(state: { counter: number }) {
-            state.counter * 2
+            state.counter = state.counter * 2
         },
         divide(state: { counter: number }) {
-            state.counter / 2
+            state.counter = state.counter / 2
         },
         clear(state: { counter: number }) {
-            state.counter - state.counter
+            state.counter = 0
         },
         increase(state: { counter: number }, action: PayloadAction<number>) {
-            state.counter + action.payload
+            state.counter = state.counter + action.payload
         },
         toggle(state: { showCounter: boolean }) {
             state.showCounter = !state.showCounter
